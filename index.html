@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .rotating-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            margin-left: -400px;
+            margin-top: -400px;
+            background: conic-gradient(from 0deg, #5865f2, #8b5cf6, #ec4899, #8b5cf6, #5865f2);
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: rotateBackground 15s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotateBackground {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            min-height: 5.5rem;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #9ca3af;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 2s forwards;
+            margin-top: -1rem;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, #0a0a0f 0%, #12091f 30%, #1a0f2e 50%, #12091f 70%, #0a0a0f 100%);
+            position: relative;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(40px);
+        }
+
+        .about-content {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-section p {
+            font-size: 1.25rem;
+            color: #9ca3af;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .about-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #5865f2 0%, #8b5cf6 100%);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
+        }
+
+        .about-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.5);
+        }
+
+        .resume-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .resume-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .resume-container {
+            width: 100%;
+            max-width: 1200px;
+            background: linear-gradient(to bottom, #12091f 0%, #1a0f2e 50%, #12091f 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(88, 101, 242, 0.3);
+            position: relative;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .resume-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .resume-header p {
+            font-size: 1.1rem;
+            color: #9ca3af;
+        }
+
+        .resume-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .resume-action-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #5865f2 0%, #8b5cf6 100%);
+            color: #fff;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.3);
+        }
+
+        .resume-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .resume-viewer {
+            width: 100%;
+            height: 700px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .resume-viewer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .about-me-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, #0a0a0f 0%, #12091f 50%, #0a0a0f 100%);
+        }
+
+        .about-me-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-me-image {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(88, 101, 242, 0.3);
+            border: 3px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .about-me-content h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-me-content p {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .location-pill {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: rgba(88, 101, 242, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: #a78bfa;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .skills-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, #0a0a0f 0%, #12091f 30%, #1a0f2e 50%, #12091f 70%, #0a0a0f 100%);
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .skills-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .skills-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(26, 15, 46, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.4);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-badge {
+            padding: 0.6rem 1.2rem;
+            background: rgba(88, 101, 242, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: #a78bfa;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: rgba(88, 101, 242, 0.25);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: scale(1.05);
+        }
+
+        .projects-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, #0a0a0f 0%, #12091f 50%, #0a0a0f 100%);
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .projects-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(26, 15, 46, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(88, 101, 242, 0.4);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            color: #9ca3af;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badge {
+            padding: 0.4rem 0.9rem;
+            background: rgba(88, 101, 242, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: #a78bfa;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-btn {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #5865f2 0%, #8b5cf6 100%);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.3);
+        }
+
+        .project-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+                min-height: 4rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .rotating-background {
+                width: 500px;
+                height: 500px;
+                margin-left: -250px;
+                margin-top: -250px;
+            }
+
+            .about-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-section p {
+                font-size: 1.1rem;
+            }
+
+            .about-section::before {
+                width: 400px;
+                height: 400px;
+            }
+
+            .resume-header h2 {
+                font-size: 2rem;
+            }
+
+            .resume-viewer {
+                height: 500px;
+            }
+
+            .resume-container {
+                padding: 1.5rem;
+            }
+
+            .about-me-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-me-image {
+                max-width: 300px;
+                height: 400px;
+                margin: 0 auto;
+            }
+
+            .about-me-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-me-content p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+                min-height: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .rotating-background {
+                width: 400px;
+                height: 400px;
+                margin-left: -200px;
+                margin-top: -200px;
+            }
+
+            .about-section h2 {
+                font-size: 2rem;
+            }
+
+            .about-section p {
+                font-size: 1rem;
+            }
+
+            .about-btn {
+                padding: 0.875rem 2rem;
+                font-size: 1rem;
+            }
+
+            .about-section::before {
+                width: 300px;
+                height: 300px;
+            }
+
+            .resume-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .resume-header p {
+                font-size: 0.9rem;
+            }
+
+            .resume-action-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .resume-viewer {
+                height: 400px;
+            }
+
+            .resume-modal.active {
+                padding: 1rem;
+            }
+
+            .resume-container {
+                padding: 1rem;
+            }
+
+            .about-me-image {
+                max-width: 100%;
+                height: 350px;
+            }
+
+            .about-me-content h2 {
+                font-size: 2rem;
+            }
+
+            .about-me-content p {
+                font-size: 0.95rem;
+            }
+
+            .location-pill {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .skills-header h2 {
+                font-size: 2rem;
+            }
+
+            .skill-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .skill-badge {
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .skills-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .skill-card {
+                padding: 1.5rem;
+            }
+
+            .projects-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+        }
+
+        footer {
+            width: 100%;
+            padding: 3rem 2rem;
+            background: #0a0a0f;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-tagline {
+            font-size: 1.5rem;
+            color: #a78bfa;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: #a78bfa;
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .footer-tagline {
+                font-size: 1.2rem;
+            }
+
+            .footer-link {
+                font-size: 1.8rem;
+            }
+
+            .footer-links {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="rotating-background"></div>
+        <div class="content">
+            <h1 id="animatedText">POOJA S</h1>
+            <p class="subtitle">Full Stack Developer</p>
+        </div>
+    </div>
+
+    <section class="about-me-section">
+        <div class="about-me-container">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+                <img src="pooja_profile.jpeg" alt="Profile Picture" class="about-me-image">
+                <a href="#" class="about-btn" onclick="openResumeModal(event)">View Resume</a>
+            </div>
+            <div class="about-me-content">
+                <h2>About Me</h2>
+                <p>
+                    Hi! I'm Pooja S, a passionate Full Stack Web Developer currently pursuing my degree in Computer Science. 
+                    I have a strong foundation in both frontend and backend technologies, allowing me to build complete web applications from the ground up.
+                </p>
+                <p>
+                    As a fresher eager to make my mark in the tech industry, I'm constantly learning and exploring new technologies. 
+                    I enjoy solving complex problems and creating intuitive user experiences that make a difference.
+                </p>
+                <p>
+                    My journey in web development has equipped me with skills in modern frameworks and tools, and I'm excited 
+                    to apply my knowledge in real-world projects. I believe in writing clean, efficient code and following best practices.
+                </p>
+                <span class="location-pill">📍 Coimbatore ,Tamilnadu</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <div class="skills-container">
+            <div class="skills-header">
+                <h2>Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Languages</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">HTML</span>
+                        <span class="skill-badge">CSS</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">C</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Frontend</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">React</span>
+                        <span class="skill-badge">Tailwind CSS</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Backend</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Node.js</span>
+                        <span class="skill-badge">Express</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Databases</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">MongoDB</span>
+                        <span class="skill-badge">MySQL</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools & Platforms</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">GitHub</span>
+                        <span class="skill-badge">VS Code</span>
+                        <span class="skill-badge">Git</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="projects-container">
+            <div class="projects-header">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Recipie Sharing Website</h3>
+                    <p>A frontend recipe search application with natural language understanding for discovering relevant recipes.
+</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JavaScript</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="project-btn">Code</a>
+                        <a href="#" class="project-btn">Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Virtual Assistant-<span style="font-style:italic;">Shifra</span></h3>
+                    <p>A virtual assistant capable of basic interaction and voice-controlled actions such as responding to greetings and commands.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">Java Script</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="project-btn">Code</a>
+                        <a href="#" class="project-btn">Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Weather Dashboard</h3>
+                    <p>A responsive weather application that displays current conditions and forecasts using real-time API data.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JavaScript</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="project-btn">Code</a>
+                        <a href="#" class="project-btn">Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>/h3>
+                    <p>A modern, responsive portfolio showcasing projects and skills with smooth animations and dark theme.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Tailwind CSS</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="project-btn">Code</a>
+                        <a href="#" class="project-btn">Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Blog Platform</h3>
+                    <p>A content management system with rich text editor, comment system, and user profiles for bloggers.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="project-btn">Code</a>
+                        <a href="#" class="project-btn">Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Chat Application</h3>
+                    <p>Real-time messaging app with group chat support, file sharing, and notification system.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Socket.io</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">MongoDB</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="project-btn">Code</a>
+                        <a href="#" class="project-btn">Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="resume-modal" id="resumeModal">
+        <div class="resume-container">
+            <button class="close-btn" onclick="closeResumeModal()">&times;</button>
+            <div class="resume-header">
+                <h2>Resume</h2>
+                <p>View or download my resume</p>
+            </div>
+            <div class="resume-actions">
+                <button class="resume-action-btn" onclick="openFullscreen()">Fullscreen</button>
+                <button class="resume-action-btn" onclick="openNewTab()">Open in New Tab</button>
+                <button class="resume-action-btn" onclick="downloadPDF()">Download PDF</button>
+            </div>
+            <div class="resume-viewer" id="resumeViewer">
+                <iframe src="resume.pdf" id="resumeFrame"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openResumeModal(e) {
+            e.preventDefault();
+            document.getElementById('resumeModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeResumeModal() {
+            document.getElementById('resumeModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openFullscreen() {
+            const viewer = document.getElementById('resumeViewer');
+            if (viewer.requestFullscreen) {
+                viewer.requestFullscreen();
+            } else if (viewer.webkitRequestFullscreen) {
+                viewer.webkitRequestFullscreen();
+            } else if (viewer.msRequestFullscreen) {
+                viewer.msRequestFullscreen();
+            }
+        }
+
+        function openNewTab() {
+            window.open('resume.pdf', '_blank');
+        }
+
+        function downloadPDF() {
+            const link = document.createElement('a');
+            link.href = 'resume.pdf';
+            link.download = 'resume.pdf';
+            link.click();
+        }
+
+        document.getElementById('resumeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeResumeModal();
+            }
+        });
+    </script>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-tagline">Let's build something amazing together 🚀</p>
+            <div class="footer-links">
+                <a href="mailto:yourname@email.com" class="footer-link" title="Email">📧</a>
+                <a href="https://github.com/yourusername" class="footer-link" target="_blank" title="GitHub">🔗</a>
+                <a href="tel:+91XXXXXXXXXX" class="footer-link" title="Phone">📱</a>
+                <a href="https://leetcode.com/yourusername" class="footer-link" target="_blank" title="LeetCode">💻</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
