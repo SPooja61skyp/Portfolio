@@ -334,6 +334,120 @@
             margin-top: 1rem;
         }
 
+        .experience-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, #0a0a0f 0%, #12091f 50%, #0a0a0f 100%);
+        }
+
+        .experience-container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .experience-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .experience-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #5865f2, #8b5cf6);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5865f2 0%, #8b5cf6 100%);
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.8);
+            border: 3px solid #0a0a0f;
+        }
+
+        .experience-card {
+            background: rgba(26, 15, 46, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.4);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .experience-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            font-size: 1.2rem;
+            color: #a78bfa;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .experience-period {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .experience-period::before {
+            content: '📅';
+            font-size: 1rem;
+        }
+
+        .experience-description {
+            font-size: 1rem;
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
         .skills-section {
             width: 100%;
             min-height: 100vh;
@@ -668,10 +782,7 @@
                 font-size: 0.95rem;
             }
 
-            .location-pill {
-                font-size: 0.9rem;
-                padding: 0.6rem 1.2rem;
-            }
+            
 
             .skills-header h2 {
                 font-size: 2rem;
@@ -765,6 +876,39 @@
             line-height: 1.6;
         }
 
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            color: #9ca3af;
+        }
+
+        .contact-item img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .contact-item a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #a78bfa;
+        }
+
         .footer-links {
             display: flex;
             justify-content: center;
@@ -776,14 +920,35 @@
         .footer-link {
             color: #9ca3af;
             text-decoration: none;
-            font-size: 2rem;
             transition: all 0.3s ease;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(26, 15, 46, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        .footer-link img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            filter: brightness(0.8);
+            transition: all 0.3s ease;
         }
 
         .footer-link:hover {
-            color: #a78bfa;
-            transform: scale(1.2);
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .footer-link:hover img {
+            filter: brightness(1.2);
         }
 
         @media (max-width: 768px) {
@@ -791,8 +956,24 @@
                 font-size: 1.2rem;
             }
 
+            .footer-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .contact-item {
+                font-size: 1rem;
+            }
+
             .footer-link {
-                font-size: 1.8rem;
+                width: 45px;
+                height: 45px;
+                padding: 8px;
+            }
+
+            .footer-link img {
+                width: 24px;
+                height: 24px;
             }
 
             .footer-links {
@@ -830,7 +1011,37 @@
                     My journey in web development has equipped me with skills in modern frameworks and tools, and I'm excited 
                     to apply my knowledge in real-world projects. I believe in writing clean, efficient code and following best practices.
                 </p>
-                <span class="location-pill">📍 Coimbatore ,Tamilnadu</span>
+            
+            </div>
+        </div>
+    </section>
+
+    <section class="experience-section">
+        <div class="experience-container">
+            <div class="experience-header">
+                <h2>Internships</h2>
+            </div>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <h3>Full Stack Development Intern</h3>
+                        <div class="experience-company">Technex Cloud Networks</div>
+                        <div class="experience-period">February 2026 - Present</div>
+                        <div class="experience-description">
+                            Currently working as a Full Stack Development Intern at Technex Cloud Networks, contributing to the development of scalable web applications and cloud-based solutions. Gaining hands-on experience with modern development technologies and best practices.
+                        </div>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <h3>Full Stack Developer</h3>
+                        <div class="experience-company">Nine Pixels Info Tech</div>
+                        <div class="experience-period">February 2025</div>
+                        <div class="experience-description">
+                            Worked as a Full Stack Developer at Nine Pixels Info Tech, developing and maintaining full-stack web applications. Collaborated with the team to deliver high-quality solutions and implemented various frontend and backend features.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -844,9 +1055,6 @@
                 <div class="skill-card">
                     <h3>Languages</h3>
                     <div class="skill-items">
-                        <span class="skill-badge">HTML</span>
-                        <span class="skill-badge">CSS</span>
-                        <span class="skill-badge">JavaScript</span>
                         <span class="skill-badge">Java</span>
                         <span class="skill-badge">Python</span>
                         <span class="skill-badge">C</span>
@@ -855,30 +1063,45 @@
                 <div class="skill-card">
                     <h3>Frontend</h3>
                     <div class="skill-items">
-                        <span class="skill-badge">React</span>
+                        <span class="skill-badge">HTML</span>
+                        <span class="skill-badge">CSS</span>
+                        <span class="skill-badge">JavaScript</span>
                         <span class="skill-badge">Tailwind CSS</span>
                     </div>
                 </div>
                 <div class="skill-card">
                     <h3>Backend</h3>
                     <div class="skill-items">
-                        <span class="skill-badge">Node.js</span>
-                        <span class="skill-badge">Express</span>
+                        <span class="skill-badge">Spring Boot</span>
+                        <span class="skill-badge">Hibernate</span>
+                        <span class="skill-badge">JDBC</span>
+                        <span class="skill-badge">REST APIs</span>
+                        <span class="skill-badge">Microservices</span>
                     </div>
                 </div>
                 <div class="skill-card">
-                    <h3>Databases</h3>
+                    <h3>Database</h3>
                     <div class="skill-items">
-                        <span class="skill-badge">MongoDB</span>
                         <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">PostgreSQL</span>
                     </div>
                 </div>
                 <div class="skill-card">
-                    <h3>Tools & Platforms</h3>
+                    <h3>Tools</h3>
                     <div class="skill-items">
-                        <span class="skill-badge">GitHub</span>
-                        <span class="skill-badge">VS Code</span>
                         <span class="skill-badge">Git</span>
+                        <span class="skill-badge">GitHub</span>
+                        <span class="skill-badge">Maven</span>
+                        <span class="skill-badge">Docker</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>AI-Assisted Development Tools</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">ChatGPT</span>
+                        <span class="skill-badge">GitHub Copilot</span>
+                        <span class="skill-badge">Claude</span>
+                        <span class="skill-badge">Cursor AI</span>
                     </div>
                 </div>
             </div>
@@ -901,8 +1124,8 @@
                         <span class="tech-badge">JavaScript</span>
                     </div>
                     <div class="project-buttons">
-                        <a href="#" class="project-btn">Code</a>
-                        <a href="#" class="project-btn">Demo</a>
+                        <a href="https://github.com/SPooja61skyp/Recipe_Sharing_Website" target="_blank" class="project-btn">Code</a>
+                        <a href="https://reecipie-sharing.netlify.app/" target="_blank" class="project-btn">Demo</a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -914,59 +1137,65 @@
                         <span class="tech-badge">Java Script</span>
                     </div>
                     <div class="project-buttons">
-                        <a href="#" class="project-btn">Code</a>
-                        <a href="#" class="project-btn">Demo</a>
+                        <a href="https://github.com/SPooja61skyp/Virtual_Assistant.git" target="_blank" class="project-btn">Code</a>
+                        <a href="https://vi-shifra.netlify.app/" target="_blank" class="project-btn">Demo</a>
+                    
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>Weather Dashboard</h3>
-                    <p>A responsive weather application that displays current conditions and forecasts using real-time API data.</p>
+                    <p>A responsive weather application built using HTML, CSS, and JavaScript that fetches real-time weather data through an API and displays city-based temperature and conditions.</p>
                     <div class="project-tech">
                         <span class="tech-badge">HTML</span>
                         <span class="tech-badge">CSS</span>
                         <span class="tech-badge">JavaScript</span>
                     </div>
                     <div class="project-buttons">
-                        <a href="#" class="project-btn">Code</a>
-                        <a href="#" class="project-btn">Demo</a>
+                        
+                        <a href="https://github.com/SPooja61skyp/WeatherApplication.git" target="_blank" class="project-btn">Code</a>
+                        
                     </div>
                 </div>
                 <div class="project-card">
-                    <h3>Portfolio Website</h3>
-                    <p>A modern, responsive portfolio showcasing projects and skills with smooth animations and dark theme.</p>
+                    <h3>To Do List</h3>
+                    <p>A to-do list application built using HTML, CSS, and JavaScript that allows users to add, edit, delete, and manage daily tasks with a simple interface.</p>
                     <div class="project-tech">
-                        <span class="tech-badge">React</span>
-                        <span class="tech-badge">Tailwind CSS</span>
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JavaScript</span>
                     </div>
                     <div class="project-buttons">
-                        <a href="#" class="project-btn">Code</a>
-                        <a href="#" class="project-btn">Demo</a>
+                        <a href="https://github.com/SPooja61skyp/to-do-list.git" target="_blank" class="project-btn">Code</a>
+                        
                     </div>
                 </div>
                 <div class="project-card">
-                    <h3>Blog Platform</h3>
-                    <p>A content management system with rich text editor, comment system, and user profiles for bloggers.</p>
+                    <h3>Stopwatch Timer Application</h3>
+                    <p>A stopwatch timer application that allows users to start, pause, reset, and accurately track elapsed time through a simple and intuitive interface.</p>
                     <div class="project-tech">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Django</span>
-                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">Javascript</span>
                     </div>
                     <div class="project-buttons">
-                        <a href="#" class="project-btn">Code</a>
-                        <a href="#" class="project-btn">Demo</a>
+                         <a href="https://github.com/SPooja61skyp/stopwatch-timer-application.git" target="_blank" class="project-btn">Code</a>
+                        
                     </div>
                 </div>
                 <div class="project-card">
-                    <h3>Chat Application</h3>
-                    <p>Real-time messaging app with group chat support, file sharing, and notification system.</p>
+                    <h3>Job Portal  with Resume Upload</h3>
+                    <p>A job portal application that allows users to browse job listings and upload resumes, enabling seamless job applications through a simple and user-friendly interface.</p>
                     <div class="project-tech">
-                        <span class="tech-badge">Socket.io</span>
-                        <span class="tech-badge">Node.js</span>
-                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">Javascript</span>
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">Java Servlets</span>
+                        <span class="tech-badge">JDBC</span>
                     </div>
                     <div class="project-buttons">
-                        <a href="#" class="project-btn">Code</a>
-                        <a href="#" class="project-btn">Demo</a>
+                        <a href="https://github.com/SPooja61skyp/job-Portal.git" target="_blank" class="project-btn">Code</a>
+                        
                     </div>
                 </div>
             </div>
@@ -1035,11 +1264,26 @@
     <footer>
         <div class="footer-content">
             <p class="footer-tagline">Let's build something amazing together 🚀</p>
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <img src="images/gmail.svg" alt="Email">
+                    <a href="mailto:poojasaravananskyp@gmail.com">poojasaravananskyp@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    📞
+                    <a href="tel:+918778357156">8778357156</a>
+                </div>
+            </div>
             <div class="footer-links">
-                <a href="mailto:yourname@email.com" class="footer-link" title="Email">📧</a>
-                <a href="https://github.com/yourusername" class="footer-link" target="_blank" title="GitHub">🔗</a>
-                <a href="tel:+91XXXXXXXXXX" class="footer-link" title="Phone">📱</a>
-                <a href="https://leetcode.com/yourusername" class="footer-link" target="_blank" title="LeetCode">💻</a>
+                <a href="https://www.linkedin.com/in/pooja-s-30b674293" class="footer-link" target="_blank" title="LinkedIn">
+                    <img src="images/linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/SPooja61skyp" class="footer-link" target="_blank" title="GitHub">
+                    <img src="images/github.png" alt="GitHub">
+                </a>
+                <a href="https://leetcode.com/u/PoojaS_156/" class="footer-link" target="_blank" title="LeetCode">
+                    <img src="images/leetcode.png" alt="LeetCode">
+                </a>
             </div>
         </div>
     </footer>
